@@ -32,7 +32,7 @@ fi
 # Test 2: Backend health
 echo "--- Test 2: Backend health (GET /api/health) ---"
 HEALTH=$(curl -sf --connect-timeout 5 --max-time 10 "$BASE_URL/api/health" 2>/dev/null || echo "")
-if echo "$HEALTH" | grep -q '"status":"ok"'; then
+if echo "$HEALTH" | grep -Eq '"status"[[:space:]]*:[[:space:]]*"ok"'; then
   echo "  PASS: Backend returned healthy"
 else
   echo "  FAIL: Backend health check failed (got: $HEALTH)"

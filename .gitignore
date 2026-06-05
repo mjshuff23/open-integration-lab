@@ -1,6 +1,9 @@
 .env
 .env.local
 .deploy.env
+.env.*
+!.env.example
+!.deploy.env.example
 node_modules/
 dist/
 .next/

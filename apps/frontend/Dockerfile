@@ -7,6 +7,10 @@ ENV PATH="$PNPM_HOME:$PATH"
 
 RUN corepack enable
 
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends wget \
+    && rm -rf /var/lib/apt/lists/*
+
 FROM base AS build
 
 ARG NEXT_PUBLIC_API_URL=/api
@@ -29,6 +33,9 @@ ENV NODE_ENV=production
 ENV PORT=3000
 ENV NEXT_TELEMETRY_DISABLED=1
 
+RUN groupadd -r nodejs && useradd -r -g nodejs -d /app appuser \
+    && chown -R appuser:nodejs /app
+
 COPY --from=build /app/package.json ./package.json
 COPY --from=build /app/pnpm-lock.yaml ./pnpm-lock.yaml
 COPY --from=build /app/node_modules ./node_modules
@@ -37,5 +44,10 @@ COPY --from=build /app/next.config.ts ./next.config.ts
 COPY --from=build /app/public ./public
 
 EXPOSE 3000
+
+HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3 \
+  CMD wget --no-verbose --tries=1 --spider http://127.0.0.1:3000/ || exit 1
+
+USER appuser
 
 CMD ["pnpm", "start", "--hostname", "0.0.0.0", "--port", "3000"]

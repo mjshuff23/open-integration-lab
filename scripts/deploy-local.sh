@@ -117,7 +117,7 @@ docker push "$REGISTRY/frontend:latest"
 
 echo "--- [4/7] Run migrations ---"
 if [ -f "$PROJECT_ROOT/apps/backend/prisma/schema.prisma" ]; then
-  docker compose -f "$COMPOSE_APP" run --rm \
+  docker compose -f "$COMPOSE_APP" run --rm --remove-orphans \
     backend pnpm prisma:migrate:deploy
 else
   echo "No Prisma schema found — skipping migrations"
@@ -126,20 +126,31 @@ fi
 # ── 5. Redeploy services ────────────────────────────────────────────
 
 echo "--- [5/7] Redeploy services ---"
-IMAGE_TAG="$NEW_TAG" docker compose -f "$COMPOSE_APP" up -d backend frontend
+IMAGE_TAG="$NEW_TAG" docker compose -f "$COMPOSE_APP" up -d --remove-orphans db backend frontend nginx
 
 # ── 6. Wait for health ──────────────────────────────────────────────
 
 echo "--- [6/7] Health check ---"
-HEALTH_URL="http://localhost:8080/api/health"
+BACKEND_URL="http://localhost:8080/api/health"
+FRONTEND_URL="http://localhost:8080/"
 for i in $(seq 1 30); do
-  if curl -sf "$HEALTH_URL" > /dev/null 2>&1; then
-    echo "Backend healthy after ${i}s"
+  backend_ok=false
+  frontend_ok=false
+  if curl -sf "$BACKEND_URL" > /dev/null 2>&1; then
+    backend_ok=true
+  fi
+  if curl -sf -o /dev/null "$FRONTEND_URL" > /dev/null 2>&1; then
+    frontend_ok=true
+  fi
+  if $backend_ok && $frontend_ok; then
+    echo "Stack healthy after ${i}s"
     break
   fi
   if [ "$i" -eq 30 ]; then
-    echo "ERROR: Backend failed to become healthy after 30s"
-    echo "Check logs: docker compose -f $COMPOSE_APP logs backend"
+    echo "ERROR: Stack failed to become healthy after 30s"
+    echo "  Backend: $($backend_ok && echo 'OK' || echo 'FAIL')"
+    echo "  Frontend: $($frontend_ok && echo 'OK' || echo 'FAIL')"
+    echo "Check logs: docker compose -f $COMPOSE_APP logs backend frontend"
     exit 1
   fi
   sleep 1
