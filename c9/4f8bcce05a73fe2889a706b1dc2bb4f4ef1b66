@@ -1,0 +1,85 @@
+apps/backend/src/main.ts
+  s_54a40684d132ed::t_6812bb2d40492d 6
+  s_54a40684d132ed::t_d5bc81ea015a28 1-5,7-11
+apps/backend/src/prisma/prisma.service.ts
+  s_54a40684d132ed::t_90feaa6a8bf6c1 1-16
+apps/backend/prisma/migrations/20260406210000_init/migration.sql
+  s_54a40684d132ed::t_4bf54b5d588a3a 1-13
+apps/backend/nest-cli.json
+  s_54a40684d132ed::t_80c4423194b1fe 1-8
+apps/backend/src/app.module.ts
+  s_54a40684d132ed::t_b14739adc40c6c 1-9
+apps/frontend/next.config.ts
+  s_54a40684d132ed::t_09cc9dd61eb4d8 1-7
+infra/nginx/nginx.conf
+  s_54a40684d132ed::t_8765cb979e3608 1-7
+apps/backend/.npmrc
+  s_54a40684d132ed::t_c94eeed859dc08 1
+apps/frontend/package.json
+  s_54a40684d132ed::t_4798e6d502abe7 1-23
+apps/backend/src/health/health.controller.ts
+  s_54a40684d132ed::t_86eac43ce6d423 1-9
+apps/backend/prisma/migrations/migration_lock.toml
+  s_54a40684d132ed::t_c58599f09f35cb 1-3
+apps/backend/prisma/schema.prisma
+  s_54a40684d132ed::t_10d949460bff31 1-17
+apps/frontend/Dockerfile
+  s_54a40684d132ed::t_807a45b81bca9b 1-41
+.env.example
+  s_54a40684d132ed::t_4b3103f387b658 1-7
+scripts/rollback-deploy.sh
+  s_54a40684d132ed::t_ee77186e604254 69
+.gitignore
+  s_54a40684d132ed::t_6024ef2bf2d8ed 1-9
+apps/frontend/eslint.config.mjs
+  s_54a40684d132ed::t_2054157b201f54 1
+apps/frontend/tsconfig.json
+  s_54a40684d132ed::t_285ef5aa4963df 1-20
+apps/frontend/app/layout.tsx
+  s_54a40684d132ed::t_f1474ce27f8a0c 1-11
+apps/backend/package.json
+  s_54a40684d132ed::t_b2a8e548f8b3bc 1-20,22-34
+  s_54a40684d132ed::t_b95b41d414b3c0 21
+apps/backend/Dockerfile
+  s_54a40684d132ed::t_b65f8f5a604e79 1-40
+apps/backend/tsconfig.build.json
+  s_54a40684d132ed::t_ae728f8e19a428 1-4
+apps/backend/tsconfig.json
+  s_54a40684d132ed::t_0593301cc34b1a 1-23
+apps/frontend/lib/env/api-base-url.ts
+  s_54a40684d132ed::t_eeb59b47beed26 1-3
+infra/compose/compose.app.yml
+  s_54a40684d132ed::t_ec96fa01e61b50 1-76
+apps/backend/eslint.config.mjs
+  s_54a40684d132ed::t_169f0eff751339 1
+apps/frontend/app/page.tsx
+  s_54a40684d132ed::t_d4ce875b3495ab 1-8
+infra/nginx/conf.d/app.conf
+  s_54a40684d132ed::t_abb1a09a21838e 1-21
+apps/backend/src/prisma/prisma.module.ts
+  s_54a40684d132ed::t_161f2a1c16520f 1-9
+apps/backend/.dockerignore
+  s_54a40684d132ed::t_e3c9b6b96739ca 1-10
+apps/frontend/.dockerignore
+  s_54a40684d132ed::t_e53ca67da836a9 1-6
+apps/frontend/lib/api/api-request.ts
+  s_54a40684d132ed::t_af56c727a63491 1-14
+scripts/smoke-test.sh
+  s_54a40684d132ed::t_5e3ad8d6c3f8c7 1-48
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.3",
+  "base_commit_sha": "c94f8bcce05a73fe2889a706b1dc2bb4f4ef1b66",
+  "prompts": {},
+  "sessions": {
+    "s_54a40684d132ed": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_167b81516ffevwVysnDkOrLlw2",
+        "model": "deepseek-v4-flash-free"
+      },
+      "human_author": "Michael Shuff <mjshuff23@gmail.com>"
+    }
+  }
+}
