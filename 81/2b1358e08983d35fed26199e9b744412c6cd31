@@ -1,0 +1,40 @@
+docs/07-deploy-pipeline.md
+  s_54a40684d132ed::t_56344dc44b51c5 43
+  s_54a40684d132ed::t_67a87e665aeb07 299
+  s_54a40684d132ed::t_7739148e5e91b8 313
+  s_54a40684d132ed::t_0fe34bc0ef3344 344
+  s_54a40684d132ed::t_02adaac0a27ab5 329
+scripts/rollback-deploy.sh
+  s_54a40684d132ed::t_d774b647b1dcf9 46-50
+apps/backend/pnpm-lock.yaml
+  ai_agent 45-50,57-59,63-65,734-792,1002-1005,1328-1331,1420-1428,1547-1551,1586-1589,1900-1902,1927-1929,2481-2484,2500-2532,2556-2559,2571-2577,2583-2587,2664-2666,3553-3643,3912-3915,4184-4185,4328-4331,4475-4483,4512-4513,4982-4983,5007-5008,5497-5501,5516-5539,5563-5564,5578-5588,5591-5593,5690
+scripts/smoke-test.sh
+  s_54a40684d132ed::t_0d38d5e2559b1b 24
+  s_54a40684d132ed::t_b18d249a9713f4 34
+infra/nginx/conf.d/app.conf
+  s_54a40684d132ed::t_994da937f9cbed 5
+apps/backend/Dockerfile
+  s_54a40684d132ed::t_625949188d90d6 40
+apps/backend/package.json
+  s_54a40684d132ed::t_61c7483c32f817 30-31,34-36
+infra/compose/compose.ci.yml
+  s_54a40684d132ed::t_9f1d7363668e53 41
+apps/backend/eslint.config.mjs
+  s_54a40684d132ed::t_a521986c6221a5 1-9
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.3",
+  "base_commit_sha": "812b1358e08983d35fed26199e9b744412c6cd31",
+  "prompts": {},
+  "sessions": {
+    "s_54a40684d132ed": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_167b81516ffevwVysnDkOrLlw2",
+        "model": "deepseek-v4-flash-free"
+      },
+      "human_author": "Michael Shuff <mjshuff23@gmail.com>"
+    }
+  }
+}
