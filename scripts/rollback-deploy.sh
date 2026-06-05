@@ -43,6 +43,11 @@ if [ ! -f "$COMPOSE_APP" ]; then
   exit 1
 fi
 
+if [ ! -f "$SMOKE_SCRIPT" ]; then
+  echo "ERROR: smoke-test.sh not found at $SMOKE_SCRIPT"
+  exit 1
+fi
+
 # ── Determine rollback tag ───────────────────────────────────────────
 
 ROLLBACK_TAG=""

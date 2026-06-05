@@ -38,7 +38,7 @@ services:
       - "8081:80"
     environment:
       - REGISTRY_URL=http://registry:5000
-      - DELETE_IMAGES_ENABLED=true
+      - DELETE_IMAGES_ENABLED=false
       - SHOW_CONTENT_DIGEST=true
       - NGINX_PROXY_PASS_URL=http://registry:5000
     depends_on:

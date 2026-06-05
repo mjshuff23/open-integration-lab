@@ -40,7 +40,7 @@ Key properties of the AWS pipeline:
 | Property | Mechanism |
 |---|---|
 | Auth | GitHub OIDC -> IAM role -> ECR + ECS |
-| Image identity | Immutable `github.sha` tag |
+| Image identity | Immutable GitHub SHA tag |
 | Schema safety | Migrations run *before* service update |
 | Rollback | Re-register task def with previous image tag |
 | State | ECS service knows its task definition revision |
@@ -296,6 +296,7 @@ ERROR: Registry not reachable at localhost:5000
 **Cause:** The local registry container is not running. Start it with `compose.ci.yml`.
 
 **Fix:**
+
 ```bash
 docker compose -f infra/compose/compose.app.yml -f infra/compose/compose.ci.yml up -d registry
 ```
@@ -309,6 +310,7 @@ Migration task failed — the new schema is incompatible with data
 **Cause:** Prisma migration has an error (e.g., NOT NULL column on table with data).
 
 **Fix:** Roll back the migration, fix the migration file, re-run:
+
 ```bash
 ./scripts/rollback-deploy.sh  # restore previous schema-compatible code
 ./scripts/run-migrations.sh   # apply the fixed migration
@@ -324,6 +326,7 @@ ERROR: Backend failed to become healthy after 30s
 **Cause:** New container crashes on startup (bad code, wrong env, DB connection failure).
 
 **Fix:**
+
 ```bash
 docker compose -f infra/compose/compose.app.yml logs backend
 ./scripts/rollback-deploy.sh
@@ -338,6 +341,7 @@ ERROR: Tag a1b2c3d not found for backend in registry
 **Cause:** The registry was pruned or the tag never existed.
 
 **Fix:** Rebuild from the git ref:
+
 ```bash
 git checkout a1b2c3d
 ./scripts/deploy-local.sh a1b2c3d

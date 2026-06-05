@@ -21,7 +21,7 @@ echo ""
 
 # Test 1: Frontend
 echo "--- Test 1: Frontend (GET /) ---"
-STATUS=$(curl -s -o /dev/null -w "%{http_code}" "$BASE_URL/")
+STATUS=$(curl -s --connect-timeout 5 --max-time 10 -o /dev/null -w "%{http_code}" "$BASE_URL/")
 if [ "$STATUS" = "200" ]; then
   echo "  PASS: Frontend returned 200"
 else
@@ -31,7 +31,7 @@ fi
 
 # Test 2: Backend health
 echo "--- Test 2: Backend health (GET /api/health) ---"
-HEALTH=$(curl -sf "$BASE_URL/api/health" 2>/dev/null || echo "")
+HEALTH=$(curl -sf --connect-timeout 5 --max-time 10 "$BASE_URL/api/health" 2>/dev/null || echo "")
 if echo "$HEALTH" | grep -q '"status":"ok"'; then
   echo "  PASS: Backend returned healthy"
 else
