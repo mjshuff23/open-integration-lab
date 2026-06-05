@@ -283,7 +283,7 @@ This is the end state: no external SaaS dependency for the deploy path at all.
 | Learning the pipeline mechanics | 1 |
 | Team wants PR gating without GitHub-hosted runners | 2 |
 | Team wants zero external SaaS dependency | 3 |
-| Need to demonstrate the full ECS→nomad/k3s migration | 3+ |
+| Need to demonstrate the full ECS→Nomad/k3s migration | 3+ |
 
 ## Failure modes
 

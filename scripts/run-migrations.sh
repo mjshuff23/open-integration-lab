@@ -33,6 +33,6 @@ echo "Running Prisma migrations..."
 echo "Compose file: $COMPOSE_APP"
 
 docker compose -f "$COMPOSE_APP" run --rm \
-  -e DATABASE_URL backend pnpm prisma:migrate:deploy
+  backend pnpm prisma:migrate:deploy
 
 echo "Migrations complete."

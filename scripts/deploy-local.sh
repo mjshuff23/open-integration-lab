@@ -118,7 +118,7 @@ docker push "$REGISTRY/frontend:latest"
 echo "--- [4/7] Run migrations ---"
 if [ -f "$PROJECT_ROOT/apps/backend/prisma/schema.prisma" ]; then
   docker compose -f "$COMPOSE_APP" run --rm \
-    -e DATABASE_URL backend pnpm prisma:migrate:deploy
+    backend pnpm prisma:migrate:deploy
 else
   echo "No Prisma schema found — skipping migrations"
 fi
