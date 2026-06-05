@@ -63,7 +63,7 @@ done
 COMPOSE_BOTH="-f $COMPOSE_APP -f $COMPOSE_CI"
 
 if $NO_BUILD; then
-  docker compose $COMPOSE_BOTH up -d --remove-orphans backend frontend nginx
+  IMAGE_TAG="$TAG" docker compose $COMPOSE_BOTH up -d --remove-orphans backend frontend nginx registry registry-ui
 else
   docker compose $COMPOSE_BOTH up -d --remove-orphans
 fi
