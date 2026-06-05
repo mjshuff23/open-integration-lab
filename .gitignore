@@ -1,0 +1,9 @@
+.env
+.env.local
+.deploy.env
+node_modules/
+dist/
+.next/
+coverage/
+*.tfstate
+*.tfplan

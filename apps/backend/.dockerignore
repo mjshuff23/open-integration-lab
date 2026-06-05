@@ -1,0 +1,10 @@
+node_modules
+dist
+coverage
+.git
+.gitignore
+README.md
+test
+.eslintrc*
+.prettierrc*
+*.md

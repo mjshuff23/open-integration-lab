@@ -1,0 +1,76 @@
+# Application stack — replaces ECS Fargate services
+#
+# AWS concept replaced:
+#   ECS Fargate services + task definitions -> Docker Compose services
+#   CloudFront + ALB -> Nginx reverse proxy
+#   RDS PostgreSQL -> PostgreSQL container
+#
+# Merge with compose.ci.yml for the full CI/CD experience:
+#   docker compose -f compose.app.yml -f compose.ci.yml up -d
+#
+# The deploy pipeline uses IMAGE_TAG to control which
+# registry images to run:
+#   IMAGE_TAG=<sha> docker compose -f compose.app.yml up -d
+
+services:
+  db:
+    image: postgres:18.3
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-app_db}
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+    volumes:
+      - postgres_data:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres} -d ${POSTGRES_DB:-app_db}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 5s
+
+  backend:
+    image: ${REGISTRY:-localhost:5000}/backend:${IMAGE_TAG:-latest}
+    build:
+      context: ../../apps/backend
+      dockerfile: Dockerfile
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      NODE_ENV: production
+      PORT: 4000
+      DATABASE_URL: postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@db:5432/${POSTGRES_DB:-app_db}?schema=public
+      JWT_SECRET: ${JWT_SECRET:-local-dev-secret}
+      JWT_EXPIRES_IN: ${JWT_EXPIRES_IN:-7d}
+      COOKIE_NAME: ${COOKIE_NAME:-auth_token}
+      FRONTEND_URL: http://localhost:8080
+
+  frontend:
+    image: ${REGISTRY:-localhost:5000}/frontend:${IMAGE_TAG:-latest}
+    build:
+      context: ../../apps/frontend
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_API_URL: /api
+    depends_on:
+      backend:
+        condition: service_started
+    environment:
+      NODE_ENV: production
+      NEXT_TELEMETRY_DISABLED: "1"
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "8080:8080"
+    volumes:
+      - ../nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ../nginx/conf.d/app.conf:/etc/nginx/conf.d/app.conf:ro
+    depends_on:
+      - backend
+      - frontend
+    restart: unless-stopped
+
+volumes:
+  postgres_data:

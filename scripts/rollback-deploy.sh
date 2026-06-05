@@ -66,7 +66,7 @@ fi
 # ── Verify tag exists in registry ───────────────────────────────────
 
 echo "Verifying tag $ROLLBACK_TAG in registry..."
-if ! curl -sf "http://${REGISTRY}/v2/backend/manifests/${ROLLBACK_TAG}" > /dev/null 2>&1; then
+if ! docker pull --quiet "${REGISTRY}/backend:${ROLLBACK_TAG}" > /dev/null 2>&1; then
   echo "ERROR: Tag $ROLLBACK_TAG not found for backend in registry"
   echo "Available tags:"
   curl -s "http://${REGISTRY}/v2/backend/tags/list" 2>/dev/null || echo "(registry unreachable)"
