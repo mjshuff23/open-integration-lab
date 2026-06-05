@@ -1,0 +1,19 @@
+scripts/start-dev.sh
+  s_54a40684d132ed::t_80214f22456aa3 66
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.3",
+  "base_commit_sha": "ae4644133a7d0f3e457f3484125734aa66b582f7",
+  "prompts": {},
+  "sessions": {
+    "s_54a40684d132ed": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_167b81516ffevwVysnDkOrLlw2",
+        "model": "deepseek-v4-flash-free"
+      },
+      "human_author": "Michael Shuff <mjshuff23@gmail.com>"
+    }
+  }
+}
