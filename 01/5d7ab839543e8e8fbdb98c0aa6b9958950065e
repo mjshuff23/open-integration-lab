@@ -1,0 +1,46 @@
+apps/frontend/eslint.config.mjs
+  s_54a40684d132ed::t_00acf50d04eb73 1-9
+scripts/smoke-test.sh
+  s_54a40684d132ed::t_8aec6751c04b5f 35
+scripts/deploy-local.sh
+  s_54a40684d132ed::t_19439b46260157 120
+  s_54a40684d132ed::t_e476a34bbc1a48 129
+  s_54a40684d132ed::t_6ac009b42f79f9 134-135,137-146,150-153
+apps/frontend/package.json
+  s_54a40684d132ed::t_b539a5a4f26f17 9-10
+  s_54a40684d132ed::t_99e6056db2c3f4 22-23
+apps/backend/src/main.ts
+  s_54a40684d132ed::t_4738a6edadf9c9 8
+apps/frontend/lib/api/api-request.ts
+  s_54a40684d132ed::t_594fd03bfc0d6b 7-9
+infra/nginx/conf.d/app.conf
+  s_54a40684d132ed::t_b58d6715eb793c 4-9
+apps/frontend/Dockerfile
+  s_54a40684d132ed::t_5685537c6b1bce 10-13
+  s_54a40684d132ed::t_64cad134553060 36-38,48-51
+apps/backend/Dockerfile
+  s_54a40684d132ed::t_718289c1d6b4c4 32-34,43-46
+  s_54a40684d132ed::t_8943a4995360d6 11
+apps/backend/tsconfig.json
+  s_54a40684d132ed::t_26188deb0bf6c2 18
+.env.example
+  s_54a40684d132ed::t_445ac1f81802b9 3-4
+.gitignore
+  s_54a40684d132ed::t_ac0e56d8c23759 4-6
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.3",
+  "base_commit_sha": "015d7ab839543e8e8fbdb98c0aa6b9958950065e",
+  "prompts": {},
+  "sessions": {
+    "s_54a40684d132ed": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_167b81516ffevwVysnDkOrLlw2",
+        "model": "deepseek-v4-flash-free"
+      },
+      "human_author": "Michael Shuff <mjshuff23@gmail.com>"
+    }
+  }
+}
