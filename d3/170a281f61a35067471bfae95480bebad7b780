@@ -1,0 +1,29 @@
+scripts/run-migrations.sh
+  s_54a40684d132ed::t_2da29ccdf4c2e5 1-38
+scripts/deploy-local.sh
+  s_54a40684d132ed::t_5304b907512459 1-165
+infra/compose/compose.ci.yml
+  s_54a40684d132ed::t_6ee858c9de6795 1-50
+scripts/rollback-deploy.sh
+  s_54a40684d132ed::t_3b9d882ee4b078 1-129
+.deploy.env.example
+  s_54a40684d132ed::t_b1e1548309145a 1-13
+docs/07-deploy-pipeline.md
+  s_54a40684d132ed::t_b29cffc3897514 1-375
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.3",
+  "base_commit_sha": "d3170a281f61a35067471bfae95480bebad7b780",
+  "prompts": {},
+  "sessions": {
+    "s_54a40684d132ed": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_167b81516ffevwVysnDkOrLlw2",
+        "model": "deepseek-v4-flash-free"
+      },
+      "human_author": "Michael Shuff <mjshuff23@gmail.com>"
+    }
+  }
+}
