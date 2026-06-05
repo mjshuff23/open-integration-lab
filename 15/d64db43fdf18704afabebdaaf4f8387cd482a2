@@ -1,0 +1,23 @@
+docs/07-deploy-pipeline.md
+  s_54a40684d132ed::t_01b7c819e90182 286
+scripts/run-migrations.sh
+  s_54a40684d132ed::t_777e5b1bc5632a 36
+scripts/deploy-local.sh
+  s_54a40684d132ed::t_a24a07f144d6d8 121
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.3",
+  "base_commit_sha": "15d64db43fdf18704afabebdaaf4f8387cd482a2",
+  "prompts": {},
+  "sessions": {
+    "s_54a40684d132ed": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_167b81516ffevwVysnDkOrLlw2",
+        "model": "deepseek-v4-flash-free"
+      },
+      "human_author": "Michael Shuff <mjshuff23@gmail.com>"
+    }
+  }
+}
