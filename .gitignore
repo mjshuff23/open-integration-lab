@@ -1,0 +1,13 @@
+.env
+.env.local
+.deploy.env
+aws-integration-repo-main/
+.env.*
+!.env.example
+!.deploy.env.example
+node_modules/
+dist/
+.next/
+coverage/
+*.tfstate
+*.tfplan

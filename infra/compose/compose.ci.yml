@@ -1,0 +1,50 @@
+# CI/CD overlay that adds a local OCI container registry.
+#
+# Merge with compose.app.yml:
+#   docker compose -f compose.app.yml -f compose.ci.yml up -d
+#
+# AWS concept replaced:
+#   ECR (Elastic Container Registry) -> local registry:2
+#
+# System concept taught:
+#   Image registry as a service — push, tag, list, pull.
+#   Registry UI shows the image inventory, mirroring ECR's web console.
+#
+# How to verify:
+#   curl http://localhost:5000/v2/_catalog
+#   Open http://localhost:8081 in a browser
+#
+# The deploy pipeline pushes images to localhost:5000
+# and deploys services using IMAGE_TAG environment variable.
+
+services:
+  registry:
+    image: registry:2
+    ports:
+      - "5000:5000"
+    volumes:
+      - registry_data:/var/lib/registry
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:5000/v2/"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  registry-ui:
+    image: joxit/docker-registry-ui:latest
+    ports:
+      - "8081:80"
+    environment:
+      - REGISTRY_URL=http://registry:5000
+      - DELETE_IMAGES_ENABLED=false
+      - SHOW_CONTENT_DIGEST=true
+      - NGINX_PROXY_PASS_URL=http://registry:5000
+    depends_on:
+      registry:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  registry_data:
