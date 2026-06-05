@@ -28,6 +28,8 @@ PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 
 DEPLOY_STATE="$PROJECT_ROOT/.deploy.env"
 COMPOSE_APP="$PROJECT_ROOT/infra/compose/compose.app.yml"
+COMPOSE_CI="$PROJECT_ROOT/infra/compose/compose.ci.yml"
+COMPOSE_BOTH="-f $COMPOSE_APP -f $COMPOSE_CI"
 REGISTRY="${REGISTRY:-localhost:5000}"
 SMOKE_SCRIPT="$SCRIPT_DIR/smoke-test.sh"
 
@@ -117,7 +119,7 @@ docker push "$REGISTRY/frontend:latest"
 
 echo "--- [4/7] Run migrations ---"
 if [ -f "$PROJECT_ROOT/apps/backend/prisma/schema.prisma" ]; then
-  docker compose -f "$COMPOSE_APP" run --rm --remove-orphans \
+  docker compose $COMPOSE_BOTH run --rm --remove-orphans \
     backend pnpm prisma:migrate:deploy
 else
   echo "No Prisma schema found — skipping migrations"
@@ -126,7 +128,7 @@ fi
 # ── 5. Redeploy services ────────────────────────────────────────────
 
 echo "--- [5/7] Redeploy services ---"
-IMAGE_TAG="$NEW_TAG" docker compose -f "$COMPOSE_APP" up -d --remove-orphans db backend frontend nginx
+IMAGE_TAG="$NEW_TAG" docker compose $COMPOSE_BOTH up -d --remove-orphans db backend frontend nginx registry
 
 # ── 6. Wait for health ──────────────────────────────────────────────
 
