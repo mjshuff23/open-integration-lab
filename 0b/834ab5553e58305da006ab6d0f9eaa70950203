@@ -1,0 +1,20 @@
+docs/02-reverse-proxy.md
+  s_c4e0a96ab9d7bb::t_ed3af659562649 96
+  s_c4e0a96ab9d7bb::t_f46001b438fbdd 66-68
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.3",
+  "base_commit_sha": "0b834ab5553e58305da006ab6d0f9eaa70950203",
+  "prompts": {},
+  "sessions": {
+    "s_c4e0a96ab9d7bb": {
+      "agent_id": {
+        "tool": "gemini",
+        "id": "ea93a285-0bb1-4b83-801c-e7bf2a1e4d99",
+        "model": "gemini-3-flash-preview"
+      },
+      "human_author": "Michael Shuff <mjshuff23@gmail.com>"
+    }
+  }
+}
