@@ -62,7 +62,7 @@ Nginx is the single browser entrypoint on port 8080. All traffic enters through 
 - `/api*` → backend
 - `/*` → frontend
 
-See [Reverse Proxy](./02-reverse-proxy.md) for the full routing reference, proxy-pass behavior, and failure drill.
+See [Reverse Proxy](./02-reverse-proxy.md) for the full routing reference, `proxy_pass` behavior, and failure drill.
 
 ## Design rule
 

@@ -77,7 +77,7 @@ The following table shows exactly how Nginx matches paths. Order matters — Ngi
 
 ### Request flow examples
 
-```
+```text
 GET /                  → frontend:3000  → Next.js renders homepage
 GET /login             → frontend:3000  → Next.js renders login
 GET /api               → 301 → /api/   → redirect
@@ -249,7 +249,7 @@ curl -i http://localhost:8080/api/health
 
 The proxy logs will show:
 
-```
+```log
 [error] ... upstream prematurely closed connection ... while reading response header from upstream, client: ..., server: , request: "GET /api/health HTTP/1.1", upstream: "http://172.x.x.x:4000/api/health"
 ```
 
