@@ -1,0 +1,24 @@
+docs/00-architecture.md
+  s_c4e0a96ab9d7bb::t_fe42e6107f22a5 65
+docs/02-reverse-proxy.md
+  s_c4e0a96ab9d7bb::t_ef17dff0073181 252
+  s_c4e0a96ab9d7bb::t_3acf561f90f487 80
+infra/nginx/nginx.conf
+  s_c4e0a96ab9d7bb::t_a930ded77c8926 11-13
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.3",
+  "base_commit_sha": "bfe4bf8373686549a31a5dda63fa193f7b50eefe",
+  "prompts": {},
+  "sessions": {
+    "s_c4e0a96ab9d7bb": {
+      "agent_id": {
+        "tool": "gemini",
+        "id": "ea93a285-0bb1-4b83-801c-e7bf2a1e4d99",
+        "model": "gemini-3-flash-preview"
+      },
+      "human_author": "Michael Shuff <mjshuff23@gmail.com>"
+    }
+  }
+}
