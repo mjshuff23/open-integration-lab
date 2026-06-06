@@ -63,9 +63,9 @@ Browser -> proxy:8080/*     -> frontend:3000
 The following table shows exactly how Nginx matches paths. Order matters — Nginx evaluates locations in this priority:
 
 1. Exact match (`= /path`)
-2. Prefix match (`/path/`)
-3. Regex match (`~ pattern`)
-4. Catch-all prefix (`/`)
+2. Longest prefix match is selected and remembered (`/path/`)
+3. Regex match (`~ pattern`) is then evaluated in declaration order
+4. If a regex matches, that regex location is used; otherwise Nginx uses the remembered prefix match (`/` is just the fallback catch-all prefix)
 
 ### Current rules in `infra/nginx/conf.d/app.conf`
 
@@ -93,7 +93,7 @@ A common mistake is accidentally stripping or duplicating the `/api` prefix thro
 
 ### Rule
 
-When `proxy_pass` includes a URI **path** (anything after the host), Nginx replaces the matched location prefix with that path. When `proxy_pass` has **no URI** (just `http://upstream;` or `http://upstream;` with a variable), the original request URI is passed as-is.
+When `proxy_pass` includes a URI **path** (anything after the host), Nginx replaces the matched location prefix with that path. When `proxy_pass` has **no URI** (just `http://upstream;` or `http://$upstream;` with a variable), the original request URI is passed as-is.
 
 ### Examples of bad behavior
 
