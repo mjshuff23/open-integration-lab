@@ -56,6 +56,14 @@ curl http://localhost:8080/
 curl http://localhost:8080/api/health
 ```
 
+## Edge proxy
+
+Nginx is the single browser entrypoint on port 8080. All traffic enters through the proxy, which routes by path:
+- `/api*` → backend
+- `/*` → frontend
+
+See [Reverse Proxy](./02-reverse-proxy.md) for the full routing reference, `proxy_pass` behavior, and failure drill.
+
 ## Design rule
 
 Do not jump to Kubernetes or a fancy platform until the basic pipe is visible:
